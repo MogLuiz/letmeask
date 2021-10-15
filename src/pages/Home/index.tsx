@@ -26,7 +26,7 @@ const Home: React.FC = () => {
       <main>
         <div className={styles.main_content}>
           <img src={logoImg} alt="Logo" />
-          <button type="button">
+          <button type="button" className={styles.create_room}>
             <img src={googleIconImg} alt="Logo do Google" />
             Crie sua sala com o Google
           </button>
