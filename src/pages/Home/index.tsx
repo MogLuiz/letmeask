@@ -24,13 +24,13 @@ const Home: React.FC = () => {
         <p>Tire as dúvidas da sua audiêcia em tempo real</p>
       </aside>
       <main>
-        <div>
+        <div className={styles.main_content}>
           <img src={logoImg} alt="Logo" />
           <button type="button">
             <img src={googleIconImg} alt="Logo do Google" />
             Crie sua sala com o Google
           </button>
-          <div>Ou entre em uma sala</div>
+          <div className={styles.separator}>Ou entre em uma sala</div>
           <form>
             <input type="text" placeholder="Digite o código da sala" />
             <button type="submit">Entrar na sala</button>
