@@ -6,6 +6,9 @@ import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 import googleIconImg from "../../assets/images/google-icon.svg";
 
+// Components
+import Button from "../../components/Button";
+
 // Styles
 import styles from "./styles.module.scss";
 
@@ -33,7 +36,8 @@ const Home: React.FC = () => {
           <div className={styles.separator}>Ou entre em uma sala</div>
           <form>
             <input type="text" placeholder="Digite o código da sala" />
-            <button type="submit">Entrar na sala</button>
+            {/* <Button type="submit">Entrar na sala</Button> */}
+            <Button type="button">Entrar na sala</Button>
           </form>
         </div>
       </main>
