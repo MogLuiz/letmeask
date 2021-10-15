@@ -36,7 +36,6 @@ const Home: React.FC = () => {
           <div className={styles.separator}>Ou entre em uma sala</div>
           <form>
             <input type="text" placeholder="Digite o código da sala" />
-            {/* <Button type="submit">Entrar na sala</Button> */}
             <Button type="button">Entrar na sala</Button>
           </form>
         </div>
