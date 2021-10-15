@@ -7,6 +7,9 @@ import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 import googleIconImg from "../../assets/images/google-icon.svg";
 
+// Services
+import { auth, firebase } from "../../services/firebase";
+
 // Components
 import Button from "../../components/Button";
 
@@ -23,8 +26,12 @@ const Home: React.FC = () => {
   // Functions
   // -------------------------------------------------
 
-  const navigateToNewRoom = () => {
-    history.push("/rooms/new");
+  const handleCreateRoom = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    auth.signInWithPopup(provider).then((response) => {
+      history.push("/rooms/new");
+    });
   };
 
   // -------------------------------------------------
@@ -43,7 +50,7 @@ const Home: React.FC = () => {
       <main>
         <div className={styles.main_content}>
           <img src={logoImg} alt="Logo" />
-          <button onClick={navigateToNewRoom} className={styles.create_room}>
+          <button onClick={handleCreateRoom} className={styles.create_room}>
             <img src={googleIconImg} alt="Logo do Google" />
             Crie sua sala com o Google
           </button>
