@@ -1,5 +1,5 @@
 // Packages
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router";
 
 // Assets
@@ -13,6 +13,9 @@ import { auth, firebase } from "../../services/firebase";
 // Components
 import Button from "../../components/Button";
 
+// Context
+import { TestContext } from "../../App";
+
 // Styles
 import styles from "./styles.module.scss";
 
@@ -21,7 +24,7 @@ const Home: React.FC = () => {
   // Hooks
   // -------------------------------------------------
   const history = useHistory();
-
+  const value = useContext(TestContext);
   // -------------------------------------------------
   // Functions
   // -------------------------------------------------
@@ -33,6 +36,8 @@ const Home: React.FC = () => {
       history.push("/rooms/new");
     });
   };
+
+  console.log(value);
 
   // -------------------------------------------------
   // Render
