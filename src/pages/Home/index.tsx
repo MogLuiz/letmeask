@@ -1,5 +1,6 @@
 // Packages
 import React from "react";
+import { useHistory } from "react-router";
 
 // Assets
 import illustrationImg from "../../assets/images/illustration.svg";
@@ -13,6 +14,19 @@ import Button from "../../components/Button";
 import styles from "./styles.module.scss";
 
 const Home: React.FC = () => {
+  // -------------------------------------------------
+  // Hooks
+  // -------------------------------------------------
+  const history = useHistory();
+
+  // -------------------------------------------------
+  // Functions
+  // -------------------------------------------------
+
+  const navigateToNewRoom = () => {
+    history.push("/rooms/new");
+  };
+
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
@@ -29,7 +43,7 @@ const Home: React.FC = () => {
       <main>
         <div className={styles.main_content}>
           <img src={logoImg} alt="Logo" />
-          <button type="button" className={styles.create_room}>
+          <button onClick={navigateToNewRoom} className={styles.create_room}>
             <img src={googleIconImg} alt="Logo do Google" />
             Crie sua sala com o Google
           </button>
