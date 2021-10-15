@@ -6,12 +6,15 @@ import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 import googleIconImg from "../../assets/images/google-icon.svg";
 
+// Styles
+import styles from "./styles.module.scss";
+
 const Home: React.FC = () => {
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
   return (
-    <div>
+    <div id={styles.page_auth}>
       <aside>
         <img
           src={illustrationImg}
