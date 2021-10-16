@@ -7,13 +7,11 @@ import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 import googleIconImg from "../../assets/images/google-icon.svg";
 
-// Services
-import { auth, firebase } from "../../services/firebase";
-
 // Components
 import Button from "../../components/Button";
 
 // Context
+import { AuthContext } from "../../App";
 
 // Styles
 import styles from "./styles.module.scss";
@@ -23,11 +21,16 @@ const Home: React.FC = () => {
   // Hooks
   // -------------------------------------------------
   const history = useHistory();
+  const { user, signInWithGoogle } = useContext(AuthContext);
+
   // -------------------------------------------------
   // Functions
   // -------------------------------------------------
 
-  const handleCreateRoom = () => {
+  const handleCreateRoom = async () => {
+    if (!user) {
+      await signInWithGoogle();
+    }
     history.push("/rooms/new");
   };
 

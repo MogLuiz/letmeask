@@ -17,7 +17,7 @@ interface IUser {
 }
 interface IAuthContext {
   user: IUser | undefined;
-  signInWithGoogle: () => void;
+  signInWithGoogle: () => Promise<void>;
 }
 
 export const AuthContext = createContext({} as IAuthContext);
@@ -32,24 +32,24 @@ function App() {
   // Functions
   // -------------------------------------------------
 
-  const signInWithGoogle = () => {
+  const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    auth.signInWithPopup(provider).then((response) => {
-      if (response.user) {
-        const { displayName, photoURL, uid } = response.user;
+    const response = await auth.signInWithPopup(provider);
 
-        if (!displayName || !photoURL) {
-          throw new Error("Missing information from Google Account.");
-        }
+    if (response.user) {
+      const { displayName, photoURL, uid } = response.user;
 
-        setUser({
-          id: uid,
-          name: displayName,
-          avatar: photoURL,
-        });
+      if (!displayName || !photoURL) {
+        throw new Error("Missing information from Google Account.");
       }
-    });
+
+      setUser({
+        id: uid,
+        name: displayName,
+        avatar: photoURL,
+      });
+    }
   };
 
   // -------------------------------------------------
