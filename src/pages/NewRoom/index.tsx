@@ -1,5 +1,5 @@
 // Packages
-import React, { useContext } from "react";
+import React, { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Assets
@@ -12,14 +12,41 @@ import { useAuth } from "../../hooks/useAuth";
 // Components
 import Button from "../../components/Button";
 
+// Services
+import { database } from "../../services/firebase";
+
 // Styles
 import styles from "./styles.module.scss";
 
 const NewRoom: React.FC = () => {
   // -------------------------------------------------
+  // States
+  // -------------------------------------------------
+  const [newRoom, setNewRoom] = useState<string>("");
+
+  // -------------------------------------------------
   // Hooks
   // -------------------------------------------------
   const { user } = useAuth();
+
+  // -------------------------------------------------
+  // Functions
+  // -------------------------------------------------
+
+  const handleCreateRoom = async (event: FormEvent) => {
+    event.preventDefault();
+
+    if (newRoom.trim() === "") {
+      return;
+    }
+
+    const roomRef = database.ref("rooms");
+
+    const firebaseRoom = await roomRef.push({
+      title: newRoom,
+      authorId: user?.id,
+    });
+  };
 
   // -------------------------------------------------
   // Render
@@ -38,9 +65,14 @@ const NewRoom: React.FC = () => {
         <div className={styles.main_content}>
           <img src={logoImg} alt="Logo" />
           <h2>Criar uma nova sala</h2>
-          <form>
-            <input type="text" placeholder="Nome da sala" />
-            <Button type="button">Criar sala</Button>
+          <form onSubmit={handleCreateRoom}>
+            <input
+              type="text"
+              placeholder="Nome da sala"
+              onChange={(event) => setNewRoom(event.target.value)}
+              value={newRoom}
+            />
+            <Button type="submit">Criar sala</Button>
           </form>
           <p>
             Quer entrar em uma sala existente? <Link to="/">clique aqui</Link>
