@@ -9,7 +9,7 @@ import NewRoom from "./pages/NewRoom";
 import { auth, firebase } from "./services/firebase";
 
 // context
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 interface IUser {
   id: string;
   name: string;
@@ -27,6 +27,28 @@ function App() {
   // States
   // -------------------------------------------------
   const [user, setUser] = useState<IUser>();
+
+  // -------------------------------------------------
+  // Hooks
+  // -------------------------------------------------
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        const { displayName, photoURL, uid } = user;
+
+        if (!displayName || !photoURL) {
+          throw new Error("Missing information from Google Account.");
+        }
+
+        setUser({
+          id: uid,
+          name: displayName,
+          avatar: photoURL,
+        });
+      }
+    });
+  }, []);
 
   // -------------------------------------------------
   // Functions

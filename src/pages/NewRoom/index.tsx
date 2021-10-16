@@ -1,10 +1,13 @@
 // Packages
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 // Assets
 import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
+
+// Context
+import { AuthContext } from "../../App";
 
 // Components
 import Button from "../../components/Button";
@@ -13,6 +16,11 @@ import Button from "../../components/Button";
 import styles from "./styles.module.scss";
 
 const NewRoom: React.FC = () => {
+  // -------------------------------------------------
+  // Hooks
+  // -------------------------------------------------
+  const { user } = useContext(AuthContext);
+
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
@@ -29,6 +37,7 @@ const NewRoom: React.FC = () => {
       <main>
         <div className={styles.main_content}>
           <img src={logoImg} alt="Logo" />
+          <h1>{user?.name}</h1>
           <h2>Criar uma nova sala</h2>
           <form>
             <input type="text" placeholder="Nome da sala" />
