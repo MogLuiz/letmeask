@@ -10,14 +10,17 @@ import { auth, firebase } from "./services/firebase";
 
 // context
 import { createContext, useState } from "react";
-
-export const AuthContext = createContext({} as any);
-
 interface IUser {
   id: string;
   name: string;
   avatar: string;
 }
+interface IAuthContext {
+  user: IUser | undefined;
+  signInWithGoogle: () => void;
+}
+
+export const AuthContext = createContext({} as IAuthContext);
 
 function App() {
   // -------------------------------------------------
@@ -53,7 +56,7 @@ function App() {
   // Render
   // -------------------------------------------------
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle }}>
       <BrowserRouter>
         <Route path="/" component={Home} exact />
         <Route path="/rooms/new" component={NewRoom} exact />
