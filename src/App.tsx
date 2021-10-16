@@ -33,7 +33,7 @@ function App() {
   // -------------------------------------------------
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         const { displayName, photoURL, uid } = user;
 
@@ -48,6 +48,10 @@ function App() {
         });
       }
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   // -------------------------------------------------
