@@ -24,7 +24,7 @@ const Home: React.FC = () => {
   // Hooks
   // -------------------------------------------------
   const history = useHistory();
-  const value = useContext(TestContext);
+  const { value, setValue } = useContext(TestContext);
   // -------------------------------------------------
   // Functions
   // -------------------------------------------------
