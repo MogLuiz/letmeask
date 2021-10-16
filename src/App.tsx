@@ -13,11 +13,17 @@ import { createContext, useState } from "react";
 
 export const AuthContext = createContext({} as any);
 
+interface IUser {
+  id: string;
+  name: string;
+  avatar: string;
+}
+
 function App() {
   // -------------------------------------------------
   // States
   // -------------------------------------------------
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<IUser>();
 
   // -------------------------------------------------
   // Functions
@@ -47,7 +53,7 @@ function App() {
   // Render
   // -------------------------------------------------
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user }}>
       <BrowserRouter>
         <Route path="/" component={Home} exact />
         <Route path="/rooms/new" component={NewRoom} exact />
