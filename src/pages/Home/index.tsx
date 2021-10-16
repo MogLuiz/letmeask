@@ -10,8 +10,8 @@ import googleIconImg from "../../assets/images/google-icon.svg";
 // Components
 import Button from "../../components/Button";
 
-// Context
-import { AuthContext } from "../../App";
+// Hooks
+import { useAuth } from "../../hooks/useAuth";
 
 // Styles
 import styles from "./styles.module.scss";
@@ -21,7 +21,7 @@ const Home: React.FC = () => {
   // Hooks
   // -------------------------------------------------
   const history = useHistory();
-  const { user, signInWithGoogle } = useContext(AuthContext);
+  const { user, signInWithGoogle } = useAuth();
 
   // -------------------------------------------------
   // Functions

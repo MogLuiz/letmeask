@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 
-// Context
-import { AuthContext } from "../../App";
+// Hooks
+import { useAuth } from "../../hooks/useAuth";
 
 // Components
 import Button from "../../components/Button";
@@ -19,7 +19,7 @@ const NewRoom: React.FC = () => {
   // -------------------------------------------------
   // Hooks
   // -------------------------------------------------
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   // -------------------------------------------------
   // Render
@@ -37,7 +37,6 @@ const NewRoom: React.FC = () => {
       <main>
         <div className={styles.main_content}>
           <img src={logoImg} alt="Logo" />
-          <h1>{user?.name}</h1>
           <h2>Criar uma nova sala</h2>
           <form>
             <input type="text" placeholder="Nome da sala" />
