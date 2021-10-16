@@ -28,11 +28,7 @@ const Home: React.FC = () => {
   // -------------------------------------------------
 
   const handleCreateRoom = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    auth.signInWithPopup(provider).then((response) => {
-      history.push("/rooms/new");
-    });
+    history.push("/rooms/new");
   };
 
   // -------------------------------------------------
