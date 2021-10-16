@@ -14,7 +14,6 @@ import { auth, firebase } from "../../services/firebase";
 import Button from "../../components/Button";
 
 // Context
-import { TestContext } from "../../App";
 
 // Styles
 import styles from "./styles.module.scss";
@@ -24,7 +23,6 @@ const Home: React.FC = () => {
   // Hooks
   // -------------------------------------------------
   const history = useHistory();
-  const { value, setValue } = useContext(TestContext);
   // -------------------------------------------------
   // Functions
   // -------------------------------------------------
@@ -36,8 +34,6 @@ const Home: React.FC = () => {
       history.push("/rooms/new");
     });
   };
-
-  console.log(value);
 
   // -------------------------------------------------
   // Render
