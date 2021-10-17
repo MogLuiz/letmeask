@@ -1,6 +1,6 @@
 // Packages
 import React, { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // Assets
 import illustrationImg from "../../assets/images/illustration.svg";
@@ -28,6 +28,7 @@ const NewRoom: React.FC = () => {
   // Hooks
   // -------------------------------------------------
   const { user } = useAuth();
+  const history = useHistory();
 
   // -------------------------------------------------
   // Functions
@@ -46,6 +47,8 @@ const NewRoom: React.FC = () => {
       title: newRoom,
       authorId: user?.id,
     });
+
+    history.push(`/rooms/${firebaseRoom.key}`);
   };
 
   // -------------------------------------------------

@@ -1,5 +1,5 @@
 // Packages
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // Componets
 import Home from "./pages/Home";
@@ -16,9 +16,11 @@ function App() {
   return (
     <AuthContextProvider>
       <BrowserRouter>
-        <Route path="/" component={Home} exact />
-        <Route path="/rooms/new" component={NewRoom} exact />
-        <Route path="/rooms/:id" component={Room} exact />
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/rooms/new" component={NewRoom} exact />
+          <Route path="/rooms/:id" component={Room} exact />
+        </Switch>
       </BrowserRouter>
     </AuthContextProvider>
   );
