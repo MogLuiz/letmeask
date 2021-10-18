@@ -7,21 +7,24 @@ import logoImg from "../../assets/images/logo.svg";
 // Components
 import Button from "../../components/Button";
 
+// Styles
+import styles from "./styles.module.scss";
+
 const Room: React.FC = () => {
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
   return (
-    <div className="page_room">
+    <div className={styles.page_room}>
       <header>
-        <div className="content">
+        <div className={styles.content}>
           <img src={logoImg} alt="Letmeask" />
           <div>código</div>
         </div>
       </header>
 
-      <main className="content">
-        <div className="room_title">
+      <main className={styles.content}>
+        <div className={styles.room_title}>
           <h1>Sala React</h1>
           <span>4 perguntas</span>
         </div>
@@ -29,7 +32,7 @@ const Room: React.FC = () => {
         <form>
           <textarea placeholder="O que você quer perguntar?" />
 
-          <div className="form_footer">
+          <div className={styles.form_footer}>
             <span>
               Para enviar uma pergunta, <button>faça seu login</button>.
             </span>
