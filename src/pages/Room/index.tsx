@@ -23,7 +23,7 @@ const Room: React.FC = () => {
         </div>
       </header>
 
-      <main className={styles.content}>
+      <main>
         <div className={styles.room_title}>
           <h1>Sala React</h1>
           <span>4 perguntas</span>
