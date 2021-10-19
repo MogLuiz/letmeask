@@ -7,7 +7,11 @@ import copyImg from "../../assets/images/copy.svg";
 // Styles
 import styles from "./styles.module.scss";
 
-const RoomCode: React.FC = () => {
+interface IPropsRoomCode {
+  codeRoom: string;
+}
+
+const RoomCode: React.FC<IPropsRoomCode> = ({ codeRoom }) => {
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
@@ -16,7 +20,7 @@ const RoomCode: React.FC = () => {
       <div>
         <img src={copyImg} alt="Copy room code" />
       </div>
-      <span>Sala #2342342</span>
+      <span>Sala: {codeRoom}</span>
     </button>
   );
 };
