@@ -6,6 +6,7 @@ import logoImg from "../../assets/images/logo.svg";
 
 // Components
 import Button from "../../components/Button";
+import RoomCode from "../../components/RoomCode";
 
 // Styles
 import styles from "./styles.module.scss";
@@ -19,7 +20,7 @@ const Room: React.FC = () => {
       <header>
         <div className={styles.content}>
           <img src={logoImg} alt="Letmeask" />
-          <div>código</div>
+          <RoomCode />
         </div>
       </header>
 
