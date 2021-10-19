@@ -8,19 +8,27 @@ import copyImg from "../../assets/images/copy.svg";
 import styles from "./styles.module.scss";
 
 interface IPropsRoomCode {
-  codeRoom: string;
+  code: string;
 }
 
-const RoomCode: React.FC<IPropsRoomCode> = ({ codeRoom }) => {
+const RoomCode: React.FC<IPropsRoomCode> = ({ code }) => {
+  // -------------------------------------------------
+  // Functions
+  // -------------------------------------------------
+
+  const copyRoomCodeToClipboard = () => {
+    navigator.clipboard.writeText(code);
+  };
+
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
   return (
-    <button className={styles.room_code}>
+    <button className={styles.room_code} onClick={copyRoomCodeToClipboard}>
       <div>
         <img src={copyImg} alt="Copy room code" />
       </div>
-      <span>Sala: {codeRoom}</span>
+      <span>Sala: {code}</span>
     </button>
   );
 };

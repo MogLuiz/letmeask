@@ -20,7 +20,7 @@ const Room: React.FC = () => {
       <header>
         <div className={styles.content}>
           <img src={logoImg} alt="Letmeask" />
-          <RoomCode codeRoom="/-MmKVwIwafewcR_FIOOp" />
+          <RoomCode code="/-MmKVwIwafewcR_FIOOp" />
         </div>
       </header>
 
