@@ -1,5 +1,6 @@
 // Packages
 import React from "react";
+import { useParams } from "react-router-dom";
 
 // Assets
 import logoImg from "../../assets/images/logo.svg";
@@ -11,7 +12,17 @@ import RoomCode from "../../components/RoomCode";
 // Styles
 import styles from "./styles.module.scss";
 
+interface IRoomParams {
+  id: string;
+}
+
 const Room: React.FC = () => {
+  // -------------------------------------------------
+  // Hooks
+  // -------------------------------------------------
+
+  const params = useParams<IRoomParams>();
+
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
@@ -20,7 +31,7 @@ const Room: React.FC = () => {
       <header>
         <div className={styles.content}>
           <img src={logoImg} alt="Letmeask" />
-          <RoomCode code="/-MmKVwIwafewcR_FIOOp" />
+          <RoomCode code={params.id} />
         </div>
       </header>
 
