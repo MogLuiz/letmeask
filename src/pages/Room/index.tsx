@@ -59,6 +59,8 @@ const Room: React.FC = () => {
     };
 
     await database.ref(`rooms/${params.id}/questions`).push(question);
+
+    setNewQuestion("");
   };
 
   // -------------------------------------------------
@@ -87,7 +89,12 @@ const Room: React.FC = () => {
           />
 
           <div className={styles.form_footer}>
-            {!user && (
+            {user ? (
+              <div className={styles.user_info}>
+                <img src={user.avatar} alt={user.name} />
+                <span>{user.name}</span>
+              </div>
+            ) : (
               <span>
                 Para enviar uma pergunta, <button>faça seu login</button>.
               </span>
