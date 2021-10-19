@@ -1,5 +1,5 @@
 // Packages
-import React from "react";
+import React, { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Assets
@@ -8,6 +8,12 @@ import logoImg from "../../assets/images/logo.svg";
 // Components
 import Button from "../../components/Button";
 import RoomCode from "../../components/RoomCode";
+
+// Database
+import { database } from "../../services/firebase";
+
+// Hooks
+import { useAuth } from "../../hooks/useAuth";
 
 // Styles
 import styles from "./styles.module.scss";
@@ -18,10 +24,42 @@ interface IRoomParams {
 
 const Room: React.FC = () => {
   // -------------------------------------------------
+  // States
+  // -------------------------------------------------
+  const [newQuestion, setNewQuestion] = useState("");
+
+  // -------------------------------------------------
   // Hooks
   // -------------------------------------------------
 
   const params = useParams<IRoomParams>();
+  const { user } = useAuth();
+
+  // -------------------------------------------------
+  // Functions
+  // -------------------------------------------------
+
+  const handleSendQuestion = async (event: FormEvent) => {
+    event.preventDefault();
+
+    if (newQuestion.trim() === "") return;
+
+    if (!user) {
+      throw new Error("You must be logged in");
+    }
+
+    const question = {
+      content: newQuestion,
+      author: {
+        name: user.name,
+        avatar: user.avatar,
+      },
+      isHighlighted: false,
+      isAnswered: false,
+    };
+
+    await database.ref(`rooms/${params.id}/questions`).push(question);
+  };
 
   // -------------------------------------------------
   // Render
@@ -41,14 +79,20 @@ const Room: React.FC = () => {
           <span>4 perguntas</span>
         </div>
 
-        <form>
-          <textarea placeholder="O que você quer perguntar?" />
+        <form onSubmit={handleSendQuestion}>
+          <textarea
+            placeholder="O que você quer perguntar?"
+            onChange={(event) => setNewQuestion(event.target.value)}
+            value={newQuestion}
+          />
 
           <div className={styles.form_footer}>
             <span>
               Para enviar uma pergunta, <button>faça seu login</button>.
             </span>
-            <Button type="submit">Enviar pergunta</Button>
+            <Button type="submit" disabled={!user}>
+              Enviar pergunta
+            </Button>
           </div>
         </form>
       </main>
