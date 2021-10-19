@@ -87,9 +87,11 @@ const Room: React.FC = () => {
           />
 
           <div className={styles.form_footer}>
-            <span>
-              Para enviar uma pergunta, <button>faça seu login</button>.
-            </span>
+            {!user && (
+              <span>
+                Para enviar uma pergunta, <button>faça seu login</button>.
+              </span>
+            )}
             <Button type="submit" disabled={!user}>
               Enviar pergunta
             </Button>
