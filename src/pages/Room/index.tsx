@@ -23,6 +23,19 @@ interface IRoomParams {
   id: string;
 }
 
+type FirebaseQuestions = Record<
+  string,
+  {
+    author: {
+      name: string;
+      avatar: string;
+    };
+    content: string;
+    isAnswered: boolean;
+    isHighlighted: boolean;
+  }
+>;
+
 const Room: React.FC = () => {
   // -------------------------------------------------
   // States
@@ -40,7 +53,8 @@ const Room: React.FC = () => {
     const roomRef = database.ref(`rooms/${params.id}`);
 
     roomRef.once("value", (room) => {
-      const parsedQuestions = Object.entries(room.questions ?? {});
+      // const parsedQuestions = Object.entries(room.questions ?? {});
+      console.log(room.val());
     });
   }, []);
 
