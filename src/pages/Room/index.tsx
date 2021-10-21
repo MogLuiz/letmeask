@@ -53,6 +53,7 @@ const Room: React.FC = () => {
   // -------------------------------------------------
   const [newQuestion, setNewQuestion] = useState("");
   const [questions, setQuestions] = useState<IQuestions[]>([]);
+  const [title, setTitle] = useState("");
 
   // -------------------------------------------------
   // Hooks
@@ -79,6 +80,8 @@ const Room: React.FC = () => {
           };
         }
       );
+      setTitle(databaseRoom.title);
+      setQuestions(parsedQuestions);
     });
   }, [params.id]);
 
@@ -124,8 +127,8 @@ const Room: React.FC = () => {
 
       <main>
         <div className={styles.room_title}>
-          <h1>Sala React</h1>
-          <span>4 perguntas</span>
+          <h1>Sala {title}</h1>
+          {questions.length > 0 && <span>{questions.length} perguntas</span>}
         </div>
 
         <form onSubmit={handleSendQuestion}>
