@@ -53,10 +53,22 @@ const Room: React.FC = () => {
     const roomRef = database.ref(`rooms/${params.id}`);
 
     roomRef.once("value", (room) => {
-      // const parsedQuestions = Object.entries(room.questions ?? {});
-      console.log(room.val());
+      const databaseRoom = room.val();
+      const firebaseQuestions: FirebaseQuestions = databaseRoom.questions;
+
+      const parsedQuestions = Object.entries(firebaseQuestions ?? {}).map(
+        ([key, value]) => {
+          return {
+            id: key,
+            content: value.content,
+            author: value.author,
+            isHighlighted: value.isHighlighted,
+            isAnswered: value.isAnswered,
+          };
+        }
+      );
     });
-  }, []);
+  }, [params.id]);
 
   // -------------------------------------------------
   // Functions
