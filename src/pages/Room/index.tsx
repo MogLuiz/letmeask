@@ -36,11 +36,23 @@ type FirebaseQuestions = Record<
   }
 >;
 
+interface IQuestions {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+  };
+  content: string;
+  isAnswered: boolean;
+  isHighlighted: boolean;
+}
+
 const Room: React.FC = () => {
   // -------------------------------------------------
   // States
   // -------------------------------------------------
   const [newQuestion, setNewQuestion] = useState("");
+  const [questions, setQuestions] = useState<IQuestions[]>([]);
 
   // -------------------------------------------------
   // Hooks
