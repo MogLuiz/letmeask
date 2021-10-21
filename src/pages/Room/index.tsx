@@ -17,6 +17,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 // Styles
 import styles from "./styles.module.scss";
+import { useEffect } from "react";
 
 interface IRoomParams {
   id: string;
@@ -34,6 +35,14 @@ const Room: React.FC = () => {
 
   const params = useParams<IRoomParams>();
   const { user } = useAuth();
+
+  useEffect(() => {
+    const roomRef = database.ref(`rooms/${params.id}`);
+
+    roomRef.once("value", (room) => {
+      const parsedQuestions = Object.entries(room.questions ?? {});
+    });
+  }, []);
 
   // -------------------------------------------------
   // Functions
