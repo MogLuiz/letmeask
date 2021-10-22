@@ -65,7 +65,7 @@ const Room: React.FC = () => {
   useEffect(() => {
     const roomRef = database.ref(`rooms/${params.id}`);
 
-    roomRef.once("value", (room) => {
+    roomRef.on("value", (room) => {
       const databaseRoom = room.val();
       const firebaseQuestions: FirebaseQuestions = databaseRoom.questions;
 
@@ -154,6 +154,7 @@ const Room: React.FC = () => {
             </Button>
           </div>
         </form>
+        {JSON.stringify(questions)}
       </main>
     </div>
   );
