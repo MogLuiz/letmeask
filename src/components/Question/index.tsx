@@ -2,7 +2,7 @@
 import React from "react";
 
 // Styles
-import styles from "styles.module.scss";
+import styles from "./styles.module.scss";
 
 interface IQuestionProps {
   content: string;
@@ -13,6 +13,9 @@ interface IQuestionProps {
 }
 
 const Question: React.FC<IQuestionProps> = ({ content, author }) => {
+  // -------------------------------------------------
+  // Render
+  // -------------------------------------------------
   return (
     <div className={styles.question}>
       <p>{content}</p>

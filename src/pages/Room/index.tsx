@@ -8,6 +8,7 @@ import logoImg from "../../assets/images/logo.svg";
 // Components
 import Button from "../../components/Button";
 import RoomCode from "../../components/RoomCode";
+import Question from "../../components/Question";
 
 // Database
 import { database } from "../../services/firebase";
@@ -154,7 +155,9 @@ const Room: React.FC = () => {
             </Button>
           </div>
         </form>
-        {JSON.stringify(questions)}
+        {questions.map((item) => {
+          return <Question author={item.author} content={item.content} />;
+        })}
       </main>
     </div>
   );
