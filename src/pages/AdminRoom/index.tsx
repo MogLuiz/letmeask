@@ -74,7 +74,10 @@ const AdminRoom: React.FC = () => {
       <header>
         <div className={styles.content}>
           <img src={logoImg} alt="Letmeask" />
-          <RoomCode code={params.id} />
+          <div>
+            <RoomCode code={params.id} />
+            <Button>Encerrar sala</Button>
+          </div>
         </div>
       </header>
 
@@ -84,29 +87,6 @@ const AdminRoom: React.FC = () => {
           {questions.length > 0 && <span>{questions.length} perguntas</span>}
         </div>
 
-        <form onSubmit={handleSendQuestion}>
-          <textarea
-            placeholder="O que você quer perguntar?"
-            onChange={(event) => setNewQuestion(event.target.value)}
-            value={newQuestion}
-          />
-
-          <div className={styles.form_footer}>
-            {user ? (
-              <div className={styles.user_info}>
-                <img src={user.avatar} alt={user.name} />
-                <span>{user.name}</span>
-              </div>
-            ) : (
-              <span>
-                Para enviar uma pergunta, <button>faça seu login</button>.
-              </span>
-            )}
-            <Button type="submit" disabled={!user}>
-              Enviar pergunta
-            </Button>
-          </div>
-        </form>
         <div className={styles.question_list}>
           {questions.map((item) => {
             return (
