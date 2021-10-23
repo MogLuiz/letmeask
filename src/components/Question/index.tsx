@@ -15,7 +15,14 @@ interface IQuestionProps {
 const Question: React.FC<IQuestionProps> = ({ content, author }) => {
   return (
     <div className={styles.question}>
-      <p></p>
+      <p>{content}</p>
+      <footer>
+        <div className={styles.user_info}>
+          <img src={author.avatar} alt={author.name} />
+          <span>{author.name}</span>
+        </div>
+        <div></div>
+      </footer>
     </div>
   );
 };
