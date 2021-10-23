@@ -155,9 +155,17 @@ const Room: React.FC = () => {
             </Button>
           </div>
         </form>
-        {questions.map((item) => {
-          return <Question author={item.author} content={item.content} />;
-        })}
+        <div className={styles.question_list}>
+          {questions.map((item) => {
+            return (
+              <Question
+                key={item.id}
+                author={item.author}
+                content={item.content}
+              />
+            );
+          })}
+        </div>
       </main>
     </div>
   );
