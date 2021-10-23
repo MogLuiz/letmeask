@@ -76,7 +76,7 @@ const AdminRoom: React.FC = () => {
           <img src={logoImg} alt="Letmeask" />
           <div>
             <RoomCode code={params.id} />
-            <Button>Encerrar sala</Button>
+            <Button isOutlined>Encerrar sala</Button>
           </div>
         </div>
       </header>
