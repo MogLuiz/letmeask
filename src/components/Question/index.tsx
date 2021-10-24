@@ -1,5 +1,5 @@
 // Packages
-import React from "react";
+import React, { ReactNode } from "react";
 
 // Styles
 import styles from "./styles.module.scss";
@@ -10,9 +10,10 @@ interface IQuestionProps {
     name: string;
     avatar: string;
   };
+  children?: ReactNode;
 }
 
-const Question: React.FC<IQuestionProps> = ({ content, author }) => {
+const Question: React.FC<IQuestionProps> = ({ content, author, children }) => {
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
@@ -24,7 +25,7 @@ const Question: React.FC<IQuestionProps> = ({ content, author }) => {
           <img src={author.avatar} alt={author.name} />
           <span>{author.name}</span>
         </div>
-        <div></div>
+        <div>{children}</div>
       </footer>
     </div>
   );
