@@ -66,6 +66,14 @@ const Room: React.FC = () => {
     setNewQuestion("");
   };
 
+  const handleLikeQuestion = async (questionId: string) => {
+    await database
+      .ref(`rooms/${params.id}/questions/${questionId}/likes`)
+      .push({
+        authorId: user?.id,
+      });
+  };
+
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
@@ -108,15 +116,16 @@ const Room: React.FC = () => {
           </div>
         </form>
         <div className={styles.question_list}>
-          {questions.map((item) => {
+          {questions.map((question) => {
             return (
               <Question
-                key={item.id}
-                author={item.author}
-                content={item.content}
+                key={question.id}
+                author={question.author}
+                content={question.content}
               >
                 <button
                   className={styles.like_button}
+                  onClick={() => handleLikeQuestion(question.id)}
                   type="button"
                   aria-label="Marcar como gostei"
                 >
