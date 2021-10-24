@@ -66,12 +66,19 @@ const Room: React.FC = () => {
     setNewQuestion("");
   };
 
-  const handleLikeQuestion = async (questionId: string) => {
-    await database
-      .ref(`rooms/${params.id}/questions/${questionId}/likes`)
-      .push({
-        authorId: user?.id,
-      });
+  const handleLikeQuestion = async (questionId: string, likeId?: string) => {
+    if (likeId) {
+      // Like remove
+      await database
+        .ref(`rooms/${params.id}/questions/${questionId}/likes/${likeId}`)
+        .remove();
+    } else {
+      await database
+        .ref(`rooms/${params.id}/questions/${questionId}/likes`)
+        .push({
+          authorId: user?.id,
+        });
+    }
   };
 
   // -------------------------------------------------
@@ -122,11 +129,13 @@ const Room: React.FC = () => {
                 key={question.id}
                 author={question.author}
                 content={question.content}
-                hasLiked={question.hasLiked ? true : false}
+                hasLiked={question.likeId ? true : false}
               >
                 <button
                   className={styles.like_button}
-                  onClick={() => handleLikeQuestion(question.id)}
+                  onClick={() =>
+                    handleLikeQuestion(question.id, question.likeId)
+                  }
                   type="button"
                   aria-label="Marcar como gostei"
                 >
