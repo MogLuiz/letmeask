@@ -26,45 +26,12 @@ interface IRoomParams {
 
 const AdminRoom: React.FC = () => {
   // -------------------------------------------------
-  // States
-  // -------------------------------------------------
-  const [newQuestion, setNewQuestion] = useState("");
-
-  // -------------------------------------------------
   // Hooks
   // -------------------------------------------------
 
   const params = useParams<IRoomParams>();
   const { user } = useAuth();
   const { title, questions } = useRoom(params.id);
-
-  // -------------------------------------------------
-  // Functions
-  // -------------------------------------------------
-
-  const handleSendQuestion = async (event: FormEvent) => {
-    event.preventDefault();
-
-    if (newQuestion.trim() === "") return;
-
-    if (!user) {
-      throw new Error("You must be logged in");
-    }
-
-    const question = {
-      content: newQuestion,
-      author: {
-        name: user.name,
-        avatar: user.avatar,
-      },
-      isHighlighted: false,
-      isAnswered: false,
-    };
-
-    await database.ref(`rooms/${params.id}/questions`).push(question);
-
-    setNewQuestion("");
-  };
 
   // -------------------------------------------------
   // Render
