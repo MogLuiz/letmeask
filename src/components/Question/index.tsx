@@ -11,21 +11,27 @@ interface IQuestionProps {
     avatar: string;
   };
   children?: ReactNode;
+  hasLiked?: boolean;
 }
 
-const Question: React.FC<IQuestionProps> = ({ content, author, children }) => {
+const Question: React.FC<IQuestionProps> = ({
+  content,
+  author,
+  children,
+  hasLiked,
+}) => {
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
   return (
-    <div className={styles.question}>
+    <div className={`${styles.question} `}>
       <p>{content}</p>
       <footer>
-        <div className={styles.user_info}>
+        <div className={`${styles.user_info} `}>
           <img src={author.avatar} alt={author.name} />
           <span>{author.name}</span>
         </div>
-        <div>{children}</div>
+        <div className={`${hasLiked ? styles.liked : ""}`}>{children}</div>
       </footer>
     </div>
   );

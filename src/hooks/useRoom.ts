@@ -27,6 +27,8 @@ interface IQuestions {
   content: string;
   isAnswered: boolean;
   isHighlighted: boolean;
+  likeCount: number;
+  hasLiked: boolean;
 }
 
 export const useRoom = (roomId: string) => {

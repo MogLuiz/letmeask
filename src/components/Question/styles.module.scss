@@ -50,14 +50,14 @@
       &:hover {
         filter: brightness(0.7);
       }
-
-      &.liked {
-        color: #835afd;
-
-        svg path {
-          stroke: #835afd;
-        }
-      }
     }
+  }
+}
+
+.liked {
+  color: #835afd;
+
+  svg path {
+    stroke: #835afd;
   }
 }

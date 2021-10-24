@@ -122,6 +122,7 @@ const Room: React.FC = () => {
                 key={question.id}
                 author={question.author}
                 content={question.content}
+                hasLiked={question.hasLiked ? true : false}
               >
                 <button
                   className={styles.like_button}
@@ -129,7 +130,7 @@ const Room: React.FC = () => {
                   type="button"
                   aria-label="Marcar como gostei"
                 >
-                  <span>10</span>
+                  {question.likeCount > 0 && <span>{question.likeCount}</span>}
                   <svg
                     width="24"
                     height="24"
