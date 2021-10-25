@@ -95,6 +95,10 @@
           }
         }
 
+        > div {
+          display: flex;
+        }
+
         > span {
           font-size: 14px;
           color: #737380;
@@ -114,6 +118,11 @@
     }
     .question_list {
       margin-top: 32px;
+    }
+
+    .admin_buttons {
+      display: flex;
+      gap: 12px;
     }
   }
 }

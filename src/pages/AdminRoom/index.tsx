@@ -85,7 +85,7 @@ const AdminRoom: React.FC = () => {
                 author={question.author}
                 content={question.content}
               >
-                <div style={{ display: "flex" }}>
+                <div className={styles.admin_buttons}>
                   <button
                     type="button"
                     onClick={() => handleDeleteQuestion(question.id)}
