@@ -12,19 +12,27 @@ interface IQuestionProps {
   };
   children?: ReactNode;
   hasLiked?: boolean;
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
 }
 
 const Question: React.FC<IQuestionProps> = ({
   content,
   author,
   children,
-  hasLiked,
+  hasLiked = false,
+  isAnswered = false,
+  isHighlighted = false,
 }) => {
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
   return (
-    <div className={`${styles.question} `}>
+    <div
+      className={`${styles.question} ${isAnswered ? styles.answered : ""} ${
+        isHighlighted ? styles.highlighted : ""
+      }`}
+    >
       <p>{content}</p>
       <footer>
         <div className={`${styles.user_info} `}>
