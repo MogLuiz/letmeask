@@ -130,6 +130,8 @@ const Room: React.FC = () => {
                 author={question.author}
                 content={question.content}
                 hasLiked={question.likeId ? true : false}
+                isAnswered={question.isAnswered}
+                isHighlighted={question.isHighlighted}
               >
                 <button
                   className={styles.like_button}

@@ -96,6 +96,8 @@ const AdminRoom: React.FC = () => {
                 key={question.id}
                 author={question.author}
                 content={question.content}
+                isAnswered={question.isAnswered}
+                isHighlighted={question.isHighlighted}
               >
                 <div className={styles.admin_buttons}>
                   <button

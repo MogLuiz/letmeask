@@ -30,7 +30,7 @@ const Question: React.FC<IQuestionProps> = ({
   return (
     <div
       className={`${styles.question} ${isAnswered ? styles.answered : ""} ${
-        isHighlighted ? styles.highlighted : ""
+        isHighlighted && !isAnswered ? styles.highlighted : ""
       }`}
     >
       <p>{content}</p>
