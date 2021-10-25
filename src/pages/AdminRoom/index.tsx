@@ -5,6 +5,8 @@ import { useHistory, useParams } from "react-router-dom";
 // Assets
 import logoImg from "../../assets/images/logo.svg";
 import deleteImg from "../../assets/images/delete.svg";
+import checkImg from "../../assets/images/check.svg";
+import answerImg from "../../assets/images/answer.svg";
 
 // Components
 import Button from "../../components/Button";
@@ -83,12 +85,26 @@ const AdminRoom: React.FC = () => {
                 author={question.author}
                 content={question.content}
               >
-                <button
-                  type="button"
-                  onClick={() => handleDeleteQuestion(question.id)}
-                >
-                  <img src={deleteImg} alt="Remover pergunta" />
-                </button>
+                <div style={{ display: "flex" }}>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteQuestion(question.id)}
+                  >
+                    <img src={checkImg} alt="Remover pergunta" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteQuestion(question.id)}
+                  >
+                    <img src={answerImg} alt="Remover pergunta" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteQuestion(question.id)}
+                  >
+                    <img src={deleteImg} alt="Remover pergunta" />
+                  </button>
+                </div>
               </Question>
             );
           })}
