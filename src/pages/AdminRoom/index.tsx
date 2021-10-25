@@ -100,21 +100,27 @@ const AdminRoom: React.FC = () => {
                 isHighlighted={question.isHighlighted}
               >
                 <div className={styles.admin_buttons}>
-                  <button
-                    type="button"
-                    onClick={() => handleCheckQuestionAsAnswered(question.id)}
-                  >
-                    <img
-                      src={checkImg}
-                      alt="Marcar a perfunta como respondida"
-                    />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleHighlightQuestion(question.id)}
-                  >
-                    <img src={answerImg} alt="Dar destaque a pergunta" />
-                  </button>
+                  {!question.isAnswered && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          handleCheckQuestionAsAnswered(question.id)
+                        }
+                      >
+                        <img
+                          src={checkImg}
+                          alt="Marcar a perfunta como respondida"
+                        />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleHighlightQuestion(question.id)}
+                      >
+                        <img src={answerImg} alt="Dar destaque a pergunta" />
+                      </button>
+                    </>
+                  )}
                   <button
                     type="button"
                     onClick={() => handleDeleteQuestion(question.id)}
