@@ -54,6 +54,12 @@ const AdminRoom: React.FC = () => {
     }
   };
 
+  const handleCheckQuestionAsAnswered = async (questionId: string) => {
+    await database.ref(`rooms/${params.id}/questions/${questionId}`).update({
+      isAnswered: true,
+    });
+  };
+
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
@@ -88,15 +94,18 @@ const AdminRoom: React.FC = () => {
                 <div className={styles.admin_buttons}>
                   <button
                     type="button"
-                    onClick={() => handleDeleteQuestion(question.id)}
+                    onClick={() => handleCheckQuestionAsAnswered(question.id)}
                   >
-                    <img src={checkImg} alt="Remover pergunta" />
+                    <img
+                      src={checkImg}
+                      alt="Marcar a perfunta como respondida"
+                    />
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleDeleteQuestion(question.id)}
+                    onClick={() => handleHighlightQuestion(question.id)}
                   >
-                    <img src={answerImg} alt="Remover pergunta" />
+                    <img src={answerImg} alt="Dar destaque a pergunta" />
                   </button>
                   <button
                     type="button"
