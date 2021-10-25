@@ -99,5 +99,5 @@ npm run start ou yarn start
 
 <h2> :book: Licença </h2>
 <p>Lançado em 2021 :book:</p></br>
-<p>Feito por João Paulo Brune Dos Santos. Este projeto está sobre a licença do MIT</p></br>
+<p>Feito por Luiz Henrique.</p></br>
 <p>Dar uma :star: se este projeto te ajudou</p>
