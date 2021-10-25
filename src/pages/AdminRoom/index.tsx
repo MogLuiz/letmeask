@@ -1,6 +1,6 @@
 // Packages
 import React, { FormEvent, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 // Assets
 import logoImg from "../../assets/images/logo.svg";
@@ -33,10 +33,18 @@ const AdminRoom: React.FC = () => {
   const params = useParams<IRoomParams>();
   const { user } = useAuth();
   const { title, questions } = useRoom(params.id);
+  const history = useHistory();
 
   // -------------------------------------------------
   // Functions
   // -------------------------------------------------
+
+  const handleEndRoom = async () => {
+    await database.ref(`rooms/${params.id}`).update({
+      endedAt: new Date(),
+    });
+    history.push("/");
+  };
 
   const handleDeleteQuestion = async (questionId: string) => {
     if (window.confirm("Tem certeza que deseja excluir esta pergunta?")) {
@@ -54,7 +62,9 @@ const AdminRoom: React.FC = () => {
           <img src={logoImg} alt="Letmeask" />
           <div>
             <RoomCode code={params.id} />
-            <Button isOutlined>Encerrar sala</Button>
+            <Button isOutlined onClick={handleEndRoom}>
+              Encerrar sala
+            </Button>
           </div>
         </div>
       </header>
