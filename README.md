@@ -72,7 +72,7 @@
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/Joaobru/Leatmeask.git
+$ git clone https://github.com/MogLuiz/letmeask.git
 
 # Acesse a pasta do projeto no seu terminal/cmd
 $ cd Leatmeask-master
