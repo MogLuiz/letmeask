@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 // Assets
 import logoImg from "../../assets/images/logo.svg";
+import deleteImg from "../../assets/images/delete.svg";
 
 // Components
 import Button from "../../components/Button";
@@ -34,6 +35,16 @@ const AdminRoom: React.FC = () => {
   const { title, questions } = useRoom(params.id);
 
   // -------------------------------------------------
+  // Functions
+  // -------------------------------------------------
+
+  const handleDeleteQuestion = async (questionId: string) => {
+    if (window.confirm("Tem certeza que deseja excluir esta pergunta?")) {
+      await database.ref(`rooms/${params.id}/questions/${questionId}`).remove();
+    }
+  };
+
+  // -------------------------------------------------
   // Render
   // -------------------------------------------------
   return (
@@ -55,13 +66,20 @@ const AdminRoom: React.FC = () => {
         </div>
 
         <div className={styles.question_list}>
-          {questions.map((item) => {
+          {questions.map((question) => {
             return (
               <Question
-                key={item.id}
-                author={item.author}
-                content={item.content}
-              />
+                key={question.id}
+                author={question.author}
+                content={question.content}
+              >
+                <button
+                  type="button"
+                  onClick={() => handleDeleteQuestion(question.id)}
+                >
+                  <img src={deleteImg} alt="Remover pergunta" />
+                </button>
+              </Question>
             );
           })}
         </div>
