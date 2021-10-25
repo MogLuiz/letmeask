@@ -60,6 +60,12 @@ const AdminRoom: React.FC = () => {
     });
   };
 
+  const handleHighlightQuestion = async (questionId: string) => {
+    await database.ref(`rooms/${params.id}/questions/${questionId}`).update({
+      isHighlighted: true,
+    });
+  };
+
   // -------------------------------------------------
   // Render
   // -------------------------------------------------
